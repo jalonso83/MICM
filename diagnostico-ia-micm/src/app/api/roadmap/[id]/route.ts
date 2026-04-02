@@ -49,12 +49,9 @@ export async function POST(
     const readableStream = new ReadableStream({
       async start(controller) {
         try {
-          for await (const event of stream) {
-            if (
-              event.type === "content_block_delta" &&
-              event.delta.type === "text_delta"
-            ) {
-              const text = event.delta.text;
+          for await (const chunk of stream) {
+            const text = chunk.choices[0]?.delta?.content || "";
+            if (text) {
               fullContent += text;
               controller.enqueue(new TextEncoder().encode(text));
             }
@@ -65,7 +62,7 @@ export async function POST(
             data: {
               diagnosticId: id,
               content: fullContent,
-              modelUsed: "claude-sonnet-4-20250514",
+              modelUsed: "gpt-4o",
             },
           });
 

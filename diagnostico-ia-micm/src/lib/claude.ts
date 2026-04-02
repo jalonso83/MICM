@@ -1,8 +1,8 @@
-import Anthropic from "@anthropic-ai/sdk";
+import OpenAI from "openai";
 import { SECTIONS } from "./sections";
 
-const client = new Anthropic({
-  apiKey: process.env.ANTHROPIC_API_KEY,
+const client = new OpenAI({
+  apiKey: process.env.OPENAI_API_KEY,
 });
 
 const SYSTEM_PROMPT = `Eres un consultor experto en adopcion de inteligencia artificial para MiPyMEs (micro, pequenas y medianas empresas) en Republica Dominicana. Trabajas con el Ministerio de Industria, Comercio y MiPyMEs (MICM).
@@ -119,11 +119,14 @@ Genera la hoja de ruta personalizada para esta empresa.`;
 export async function generateRoadmapStream(data: DiagnosticForPrompt) {
   const userMessage = buildUserMessage(data);
 
-  const stream = client.messages.stream({
-    model: "claude-sonnet-4-20250514",
+  const stream = await client.chat.completions.create({
+    model: "gpt-4o",
     max_tokens: 4000,
-    system: SYSTEM_PROMPT,
-    messages: [{ role: "user", content: userMessage }],
+    stream: true,
+    messages: [
+      { role: "system", content: SYSTEM_PROMPT },
+      { role: "user", content: userMessage },
+    ],
   });
 
   return stream;
