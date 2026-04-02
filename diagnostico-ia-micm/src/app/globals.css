@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
 :root {
   --background: #f9fafb;
@@ -22,4 +23,107 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+}
+
+/* Professional table styling for roadmap */
+.roadmap-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  font-size: 0.875rem;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid #e5e7eb;
+}
+
+.roadmap-content thead {
+  background-color: #1e40af;
+  color: white;
+}
+
+.roadmap-content th {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  font-weight: 600;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.roadmap-content td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.roadmap-content tbody tr:nth-child(even) {
+  background-color: #f9fafb;
+}
+
+.roadmap-content tbody tr:hover {
+  background-color: #eff6ff;
+}
+
+.roadmap-content h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1e40af;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 3px solid #1e40af;
+}
+
+.roadmap-content h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #1f2937;
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+  padding-left: 0.75rem;
+  border-left: 4px solid #3b82f6;
+}
+
+.roadmap-content p {
+  color: #374151;
+  line-height: 1.7;
+  margin-bottom: 0.75rem;
+}
+
+.roadmap-content ul, .roadmap-content ol {
+  margin: 0.75rem 0;
+  padding-left: 1.5rem;
+}
+
+.roadmap-content li {
+  color: #374151;
+  line-height: 1.7;
+  margin-bottom: 0.5rem;
+}
+
+.roadmap-content strong {
+  color: #111827;
+}
+
+/* Print styles for PDF-like output */
+@media print {
+  body {
+    background: white;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+  .roadmap-content {
+    max-width: 100%;
+    padding: 0;
+  }
+
+  .roadmap-content h2 {
+    page-break-after: avoid;
+  }
+
+  .roadmap-content table {
+    page-break-inside: avoid;
+  }
 }

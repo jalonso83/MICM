@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { prisma } from "@/lib/db";
 import { diagnosticSubmitSchema } from "@/lib/validation";
 import { calculateScores } from "@/lib/scoring";
+import { generateUniqueRecoveryCode } from "@/lib/recovery-code";
 
 export async function POST(request: Request) {
   try {
@@ -10,7 +11,7 @@ export async function POST(request: Request) {
 
     if (!parsed.success) {
       return NextResponse.json(
-        { error: "Datos invalidos", details: parsed.error.flatten() },
+        { error: "Datos inválidos", details: parsed.error.flatten() },
         { status: 400 }
       );
     }
@@ -19,6 +20,9 @@ export async function POST(request: Request) {
 
     // Calculate scores
     const result = calculateScores(responses);
+
+    // Generate unique recovery code
+    const recoveryCode = await generateUniqueRecoveryCode();
 
     // Create company and diagnostic in a transaction
     const diagnostic = await prisma.$transaction(async (tx) => {
@@ -41,6 +45,7 @@ export async function POST(request: Request) {
       const diag = await tx.diagnostic.create({
         data: {
           companyId: company.id,
+          recoveryCode,
           responses: responses,
           scoreS1: result.sectionScores[0].rawScore,
           scoreS2: result.sectionScores[1].rawScore,
@@ -72,6 +77,7 @@ export async function POST(request: Request) {
 
     return NextResponse.json({
       id: diagnostic.id,
+      recoveryCode: diagnostic.recoveryCode,
       imiaScore: result.imiaScore,
       maturityLevel: result.finalLevelName,
       maturityNumeric: result.finalLevel,

@@ -6,10 +6,10 @@ export const SECTORES = [
   "Agroindustria",
   "Servicios profesionales",
   "Salud",
-  "Educacion",
-  "Construccion",
-  "Transporte y logistica",
-  "Tecnologia",
+  "Educación",
+  "Construcción",
+  "Transporte y logística",
+  "Tecnología",
   "Otro",
 ] as const;
 
@@ -17,11 +17,11 @@ export const PROVINCIAS = [
   "Azua",
   "Bahoruco",
   "Barahona",
-  "Dajabon",
+  "Dajabón",
   "Distrito Nacional",
   "Duarte",
   "El Seibo",
-  "Elias Pina",
+  "Elías Piña",
   "Espaillat",
   "Hato Mayor",
   "Hermanas Mirabal",
@@ -29,21 +29,21 @@ export const PROVINCIAS = [
   "La Altagracia",
   "La Romana",
   "La Vega",
-  "Maria Trinidad Sanchez",
-  "Monsenor Nouel",
+  "María Trinidad Sánchez",
+  "Monseñor Nouel",
   "Monte Cristi",
   "Monte Plata",
   "Pedernales",
   "Peravia",
   "Puerto Plata",
-  "Samana",
-  "San Cristobal",
-  "San Jose de Ocoa",
+  "Samaná",
+  "San Cristóbal",
+  "San José de Ocoa",
   "San Juan",
-  "San Pedro de Macoris",
-  "Sanchez Ramirez",
+  "San Pedro de Macorís",
+  "Sánchez Ramírez",
   "Santiago",
-  "Santiago Rodriguez",
+  "Santiago Rodríguez",
   "Santo Domingo",
   "Valverde",
 ] as const;
@@ -61,11 +61,11 @@ export const NUM_EMPLEADOS = [
 ] as const;
 
 export const ANOS_OPERACION = [
-  "Menos de 1 ano",
-  "1-3 anos",
-  "4-7 anos",
-  "8-15 anos",
-  "Mas de 15 anos",
+  "Menos de 1 año",
+  "1-3 años",
+  "4-7 años",
+  "8-15 años",
+  "Más de 15 años",
 ] as const;
 
 export const INGRESOS_MENSUALES = [
@@ -74,14 +74,16 @@ export const INGRESOS_MENSUALES = [
   "RD$150,001 - RD$500,000",
   "RD$500,001 - RD$1,500,000",
   "RD$1,500,001 - RD$5,000,000",
-  "Mas de RD$5,000,000",
+  "Más de RD$5,000,000",
 ] as const;
 
 export const FORMALIZACION = [
-  "Si, en el RNI y DGII",
-  "Solo en la DGII",
-  "En proceso",
-  "No esta formalizada",
+  "Completamente formalizada (RNC, Registro Mercantil, TSS, licencia municipal)",
+  "Tengo RNC y Registro Mercantil en Cámara de Comercio",
+  "Solo tengo RNC en la DGII",
+  "En proceso de formalización",
+  "No estoy registrado en ninguna institución",
+  "No estoy seguro de mi estatus de registro",
 ] as const;
 
 export const GENEROS = [
@@ -102,7 +104,7 @@ export const EDADES = [
 export const NIVELES_EDUCATIVOS = [
   "Primaria",
   "Secundaria",
-  "Tecnico",
+  "Técnico",
   "Universitario",
   "Postgrado",
 ] as const;
@@ -125,7 +127,7 @@ export const MATURITY_LEVELS: MaturityLevel[] = [
     name: "INICIAL",
     label: "Conectarse y Digitalizarse",
     description:
-      "La empresa opera de forma mayormente analogica. Necesita iniciar su camino de digitalizacion basica antes de poder considerar herramientas de IA.",
+      "La empresa opera de forma mayormente analógica. Necesita iniciar su camino de digitalización básica antes de poder considerar herramientas de IA.",
     color: "#EF4444",
     bgColor: "bg-red-100",
     textColor: "text-red-700",
@@ -137,7 +139,7 @@ export const MATURITY_LEVELS: MaturityLevel[] = [
     name: "EXPLORATORIO",
     label: "Descubrir la IA",
     description:
-      "Existe una digitalizacion minima y curiosidad por la tecnologia. La empresa puede dar sus primeros pasos estructurados hacia herramientas digitales e iniciar contacto con IA generativa basica.",
+      "Existe una digitalización mínima y curiosidad por la tecnología. La empresa puede dar sus primeros pasos estructurados hacia herramientas digitales e iniciar contacto con IA generativa básica.",
     color: "#F97316",
     bgColor: "bg-orange-100",
     textColor: "text-orange-700",
@@ -149,7 +151,7 @@ export const MATURITY_LEVELS: MaturityLevel[] = [
     name: "EMERGENTE",
     label: "Integrar la IA al Negocio",
     description:
-      "La empresa tiene bases digitales funcionales. Puede comenzar a implementar herramientas de IA especificas para su negocio y a medir resultados.",
+      "La empresa tiene bases digitales funcionales. Puede comenzar a implementar herramientas de IA específicas para su negocio y a medir resultados.",
     color: "#EAB308",
     bgColor: "bg-yellow-100",
     textColor: "text-yellow-700",
@@ -161,7 +163,7 @@ export const MATURITY_LEVELS: MaturityLevel[] = [
     name: "INTEGRADO",
     label: "Escalar y Optimizar",
     description:
-      "La empresa tiene una buena base tecnologica y de datos. Esta lista para una adopcion significativa de IA en multiples areas del negocio.",
+      "La empresa tiene una buena base tecnológica y de datos. Está lista para una adopción significativa de IA en múltiples áreas del negocio.",
     color: "#84CC16",
     bgColor: "bg-lime-100",
     textColor: "text-lime-700",

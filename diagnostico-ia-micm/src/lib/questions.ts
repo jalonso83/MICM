@@ -19,7 +19,7 @@ export const QUESTIONS: Question[] = [
   {
     id: "P1.1",
     sectionIndex: 0,
-    text: "Mi empresa cuenta con conexion a internet (fibra optica, cable o datos moviles) que funciona de manera estable durante el horario de operacion.",
+    text: "Mi empresa cuenta con conexión a internet (fibra óptica, cable o datos móviles) que funciona de manera estable durante el horario de operación.",
   },
   {
     id: "P1.2",
@@ -29,34 +29,34 @@ export const QUESTIONS: Question[] = [
   {
     id: "P1.3",
     sectionIndex: 0,
-    text: "Mi empresa utiliza algun tipo de almacenamiento en la nube (Google Drive, Dropbox, OneDrive, iCloud) para guardar documentos o informacion del negocio.",
+    text: "Mi empresa utiliza algún tipo de almacenamiento en la nube (Google Drive, Dropbox, OneDrive, iCloud) para guardar documentos o información del negocio.",
   },
   {
     id: "P1.4",
     sectionIndex: 0,
-    text: "Tenemos correo electronico empresarial (con dominio propio o al menos cuentas dedicadas al negocio) que se usa activamente para comunicaciones comerciales.",
+    text: "Tenemos correo electrónico empresarial (con dominio propio o al menos cuentas dedicadas al negocio) que se usa activamente para comunicaciones comerciales.",
   },
   {
     id: "P1.5",
     sectionIndex: 0,
-    text: "La velocidad y calidad de mi conexion a internet permite realizar videollamadas, descargar archivos pesados y usar aplicaciones en linea sin interrupciones frecuentes.",
+    text: "La velocidad y calidad de mi conexión a internet permite realizar videollamadas, descargar archivos pesados y usar aplicaciones en línea sin interrupciones frecuentes.",
   },
   {
     id: "P1.6",
     sectionIndex: 0,
-    text: "Mi empresa tiene pagina web propia, perfil de Google Business, o alguna presencia en internet mas alla de redes sociales personales.",
+    text: "Mi empresa tiene página web propia, perfil de Google Business, o alguna presencia en internet más allá de redes sociales personales.",
   },
   {
     id: "P1.7",
     sectionIndex: 0,
-    text: "Contamos con alguna medida de seguridad digital basica (antivirus, contrasenas seguras, respaldos de informacion).",
+    text: "Contamos con alguna medida de seguridad digital básica (antivirus, contraseñas seguras, respaldos de información).",
   },
 
   // ========== SECCION 2: Digitalizacion de Procesos Operativos ==========
   {
     id: "P2.1",
     sectionIndex: 1,
-    text: "La gestion de ventas y facturacion de mi negocio se realiza de forma digital.",
+    text: "La gestión de ventas y facturación de mi negocio se realiza de forma digital.",
   },
   {
     id: "P2.2",
@@ -71,155 +71,155 @@ export const QUESTIONS: Question[] = [
   {
     id: "P2.4",
     sectionIndex: 1,
-    text: "La comunicacion con clientes (consultas, pedidos, seguimiento, postventa) se gestiona de forma digital.",
+    text: "La comunicación con clientes (consultas, pedidos, seguimiento, postventa) se gestiona de forma digital.",
   },
   {
     id: "P2.5",
     sectionIndex: 1,
-    text: "La gestion de empleados (horarios, pagos, tareas) se realiza de forma digital.",
+    text: "La gestión de empleados (horarios, pagos, tareas) se realiza de forma digital.",
   },
   {
     id: "P2.6",
     sectionIndex: 1,
-    text: "Las compras a proveedores y la gestion de la cadena de suministro se coordinan de forma digital.",
+    text: "Las compras a proveedores y la gestión de la cadena de suministro se coordinan de forma digital.",
   },
   {
     id: "P2.7",
     sectionIndex: 1,
-    text: "El marketing y la publicidad del negocio (redes sociales, promociones, campanas) se gestionan de forma digital.",
+    text: "El marketing y la publicidad del negocio (redes sociales, promociones, campañas) se gestionan de forma digital.",
   },
   {
     id: "P2.8",
     sectionIndex: 1,
-    text: "Los procesos principales del negocio estan documentados por escrito o en un sistema, de forma que otra persona podria ejecutarlos sin depender de la memoria de una sola persona.",
+    text: "Los procesos principales del negocio están documentados por escrito o en un sistema, de forma que otra persona podría ejecutarlos sin depender de la memoria de una sola persona.",
   },
 
   // ========== SECCION 3: Gestion y Madurez de Datos ==========
   {
     id: "P3.1",
     sectionIndex: 2,
-    text: "Registramos de forma sistematica los datos de cada venta (que se vendio, cuanto, a quien, cuando, medio de pago).",
+    text: "Registramos de forma sistemática los datos de cada venta (qué se vendió, cuánto, a quién, cuándo, medio de pago).",
   },
   {
     id: "P3.2",
     sectionIndex: 2,
-    text: "Mantenemos una base de datos de clientes actualizada con informacion de contacto, historial de compras o preferencias.",
+    text: "Mantenemos una base de datos de clientes actualizada con información de contacto, historial de compras o preferencias.",
   },
   {
     id: "P3.3",
     sectionIndex: 2,
-    text: "Nuestros datos estan organizados de forma consistente (mismos formatos, sin duplicados excesivos, clasificados) y podemos encontrar informacion facilmente cuando la necesitamos.",
+    text: "Nuestros datos están organizados de forma consistente (mismos formatos, sin duplicados excesivos, clasificados) y podemos encontrar información fácilmente cuando la necesitamos.",
   },
   {
     id: "P3.4",
     sectionIndex: 2,
-    text: "Contamos con un historial de datos de al menos 6 meses que nos permite identificar tendencias (que meses se vende mas, que productos son los mas populares, etc.).",
+    text: "Contamos con un historial de datos de al menos 6 meses que nos permite identificar tendencias (qué meses se vende más, qué productos son los más populares, etc.).",
   },
   {
     id: "P3.5",
     sectionIndex: 2,
-    text: "Generamos reportes periodicos (semanal o mensual) sobre el desempeno del negocio (ventas, gastos, rentabilidad, clientes).",
+    text: "Generamos reportes periódicos (semanal o mensual) sobre el desempeño del negocio (ventas, gastos, rentabilidad, clientes).",
   },
   {
     id: "P3.6",
     sectionIndex: 2,
-    text: "Usamos los datos y reportes para tomar decisiones concretas del negocio (que comprar, a que precio vender, donde invertir, que promocion lanzar).",
+    text: "Usamos los datos y reportes para tomar decisiones concretas del negocio (qué comprar, a qué precio vender, dónde invertir, qué promoción lanzar).",
   },
   {
     id: "P3.7",
     sectionIndex: 2,
-    text: "Registramos y analizamos datos sobre la satisfaccion de nuestros clientes (encuestas, resenas, quejas, sugerencias).",
+    text: "Registramos y analizamos datos sobre la satisfacción de nuestros clientes (encuestas, reseñas, quejas, sugerencias).",
   },
   {
     id: "P3.8",
     sectionIndex: 2,
-    text: "Tenemos claras politicas sobre quien puede acceder a los datos del negocio y como se respalda la informacion para evitar perdidas.",
+    text: "Tenemos claras políticas sobre quién puede acceder a los datos del negocio y cómo se respalda la información para evitar pérdidas.",
   },
 
   // ========== SECCION 4: Conocimiento y Habilidades Digitales del Equipo ==========
   {
     id: "P4.1",
     sectionIndex: 3,
-    text: "Las personas en mi empresa manejan con comodidad herramientas basicas como correo electronico, hojas de calculo (Excel/Google Sheets), procesadores de texto y aplicaciones de celular.",
+    text: "Las personas en mi empresa manejan con comodidad herramientas básicas como correo electrónico, hojas de cálculo (Excel/Google Sheets), procesadores de texto y aplicaciones de celular.",
   },
   {
     id: "P4.2",
     sectionIndex: 3,
-    text: "Las personas en mi empresa pueden usar herramientas de comunicacion y colaboracion digital (Zoom, Google Meet, WhatsApp Business, Slack, Trello).",
+    text: "Las personas en mi empresa pueden usar herramientas de comunicación y colaboración digital (Zoom, Google Meet, WhatsApp Business, Slack, Trello).",
   },
   {
     id: "P4.3",
     sectionIndex: 3,
-    text: "Las personas en mi empresa pueden aprender a usar una herramienta digital nueva de forma autonoma (con tutoriales, videos de YouTube o guias en linea).",
+    text: "Las personas en mi empresa pueden aprender a usar una herramienta digital nueva de forma autónoma (con tutoriales, videos de YouTube o guías en línea).",
   },
   {
     id: "P4.4",
     sectionIndex: 3,
-    text: "Alguien en mi empresa (puede ser yo) ha utilizado alguna herramienta de IA como ChatGPT, Gemini, Copilot, DALL-E, Midjourney, o asistentes de voz inteligentes para algun proposito.",
+    text: "Alguien en mi empresa (puede ser yo) ha utilizado alguna herramienta de IA como ChatGPT, Gemini, Copilot, DALL-E, Midjourney, o asistentes de voz inteligentes para algún propósito.",
   },
   {
     id: "P4.5",
     sectionIndex: 3,
-    text: "En los ultimos 12 meses, alguien del equipo ha participado en algun curso, taller o capacitacion sobre herramientas digitales, redes sociales, o tecnologia aplicada al negocio.",
+    text: "En los últimos 12 meses, alguien del equipo ha participado en algún curso, taller o capacitación sobre herramientas digitales, redes sociales, o tecnología aplicada al negocio.",
   },
   {
     id: "P4.6",
     sectionIndex: 3,
-    text: "Podemos explicar en terminos simples que es la inteligencia artificial y dar al menos dos ejemplos de como se usa en los negocios.",
+    text: "Podemos explicar en términos simples qué es la inteligencia artificial y dar al menos dos ejemplos de cómo se usa en los negocios.",
   },
   {
     id: "P4.7",
     sectionIndex: 3,
-    text: "Tenemos identificada una persona dentro de la empresa (o un asesor externo) que lidera o puede liderar la adopcion de nuevas herramientas tecnologicas.",
+    text: "Tenemos identificada una persona dentro de la empresa (o un asesor externo) que lidera o puede liderar la adopción de nuevas herramientas tecnológicas.",
   },
 
   // ========== SECCION 5: Uso Actual de Inteligencia Artificial ==========
   {
     id: "P5.1",
     sectionIndex: 4,
-    text: "Uso de IA para generacion de contenido (textos para redes sociales, correos, descripciones de productos, propuestas comerciales).",
+    text: "Uso de IA para generación de contenido (textos para redes sociales, correos, descripciones de productos, propuestas comerciales).",
   },
   {
     id: "P5.2",
     sectionIndex: 4,
-    text: "Uso de IA para atencion al cliente (chatbots, respuestas automaticas, clasificacion de consultas).",
+    text: "Uso de IA para atención al cliente (chatbots, respuestas automáticas, clasificación de consultas).",
   },
   {
     id: "P5.3",
     sectionIndex: 4,
-    text: "Uso de IA para analisis de datos y reportes (analizar ventas, detectar patrones, generar graficos o resumenes).",
+    text: "Uso de IA para análisis de datos y reportes (analizar ventas, detectar patrones, generar gráficos o resúmenes).",
   },
   {
     id: "P5.4",
     sectionIndex: 4,
-    text: "Uso de IA para marketing y ventas (segmentacion de clientes, publicidad dirigida, recomendaciones de productos, prediccion de demanda).",
+    text: "Uso de IA para marketing y ventas (segmentación de clientes, publicidad dirigida, recomendaciones de productos, predicción de demanda).",
   },
   {
     id: "P5.5",
     sectionIndex: 4,
-    text: "Uso de IA para operaciones internas (automatizacion de tareas repetitivas, gestion de inventario inteligente, optimizacion de rutas, programacion de horarios).",
+    text: "Uso de IA para operaciones internas (automatización de tareas repetitivas, gestión de inventario inteligente, optimización de rutas, programación de horarios).",
   },
   {
     id: "P5.6",
     sectionIndex: 4,
-    text: "Uso de IA para gestion financiera y contable (categorizacion de gastos, proyecciones de flujo de caja, deteccion de anomalias, preparacion de reportes).",
+    text: "Uso de IA para gestión financiera y contable (categorización de gastos, proyecciones de flujo de caja, detección de anomalías, preparación de reportes).",
   },
   {
     id: "P5.7",
     sectionIndex: 4,
-    text: "Uso de IA para diseno e imagen (creacion de logos, imagenes para redes, edicion de fotos, generacion de material grafico).",
+    text: "Uso de IA para diseño e imagen (creación de logos, imágenes para redes, edición de fotos, generación de material gráfico).",
   },
   {
     id: "P5.8",
     sectionIndex: 4,
-    text: "Uso de IA para traduccion y comunicacion multilingue (traducir documentos, comunicarse con clientes en otros idiomas).",
+    text: "Uso de IA para traducción y comunicación multilingüe (traducir documentos, comunicarse con clientes en otros idiomas).",
   },
 
   // ========== SECCION 6: Cultura Organizacional, Innovacion y Disposicion al Cambio ==========
   {
     id: "P6.1",
     sectionIndex: 5,
-    text: "Estoy convencido/a de que la tecnologia y la inteligencia artificial pueden ayudar a mejorar mi negocio de forma concreta y medible.",
+    text: "Estoy convencido/a de que la tecnología y la inteligencia artificial pueden ayudar a mejorar mi negocio de forma concreta y medible.",
   },
   {
     id: "P6.2",
@@ -239,113 +239,113 @@ export const QUESTIONS: Question[] = [
   {
     id: "P6.5",
     sectionIndex: 5,
-    text: "Los empleados de mi empresa (si los tengo) muestran interes y disposicion positiva para aprender a usar nuevas herramientas tecnologicas.",
+    text: "Los empleados de mi empresa (si los tengo) muestran interés y disposición positiva para aprender a usar nuevas herramientas tecnológicas.",
   },
   {
     id: "P6.6",
     sectionIndex: 5,
-    text: "Participo en alguna red empresarial, gremio, camara de comercio, o programa de apoyo donde intercambio experiencias con otros empresarios.",
+    text: "Participo en alguna red empresarial, gremio, cámara de comercio, o programa de apoyo donde intercambio experiencias con otros empresarios.",
   },
   {
     id: "P6.7",
     sectionIndex: 5,
-    text: "He visto que mis competidores o negocios similares estan usando herramientas digitales o de IA, y siento que necesito ponerme al dia.",
+    text: "He visto que mis competidores o negocios similares están usando herramientas digitales o de IA, y siento que necesito ponerme al día.",
   },
 
   // ========== SECCION 7: Recursos Financieros y Disposicion de Inversion ==========
   {
     id: "P7.1",
     sectionIndex: 6,
-    text: "Actualmente pago por al menos un servicio digital para el negocio (internet comercial, hosting web, suscripcion a software, publicidad en redes, plataforma de pago electronico).",
+    text: "Actualmente pago por al menos un servicio digital para el negocio (internet comercial, hosting web, suscripción a software, publicidad en redes, plataforma de pago electrónico).",
   },
   {
     id: "P7.2",
     sectionIndex: 6,
-    text: "Tengo un presupuesto definido (aunque sea pequeno) que destino especificamente a tecnologia y herramientas digitales para el negocio.",
+    text: "Tengo un presupuesto definido (aunque sea pequeño) que destino específicamente a tecnología y herramientas digitales para el negocio.",
   },
   {
     id: "P7.3",
     sectionIndex: 6,
-    text: "Podria destinar entre RD$1,000 y RD$5,000 mensuales (aprox. $20-$85 USD) a una herramienta tecnologica si me demuestra que mejora mi negocio.",
+    text: "Podría destinar entre RD$1,000 y RD$5,000 mensuales (aprox. $20-$85 USD) a una herramienta tecnológica si me demuestra que mejora mi negocio.",
   },
   {
     id: "P7.4",
     sectionIndex: 6,
-    text: "Conozco y/o he accedido a programas de financiamiento, subsidios o apoyos del gobierno, banca o cooperacion internacional para que MiPyMEs inviertan en tecnologia.",
+    text: "Conozco y/o he accedido a programas de financiamiento, subsidios o apoyos del gobierno, banca o cooperación internacional para que MiPyMEs inviertan en tecnología.",
   },
   {
     id: "P7.5",
     sectionIndex: 6,
-    text: "Cuando he invertido en tecnologia o herramientas digitales anteriormente, he podido medir si la inversion valio la pena (mas ventas, menos tiempo, menos costos).",
+    text: "Cuando he invertido en tecnología o herramientas digitales anteriormente, he podido medir si la inversión valió la pena (más ventas, menos tiempo, menos costos).",
   },
   {
     id: "P7.6",
     sectionIndex: 6,
-    text: "Estaria dispuesto/a a invertir tiempo (capacitarme, asistir a talleres, ver tutoriales) para aprender a usar herramientas de IA, aun si las herramientas fueran gratuitas.",
+    text: "Estaría dispuesto/a a invertir tiempo (capacitarme, asistir a talleres, ver tutoriales) para aprender a usar herramientas de IA, aun si las herramientas fueran gratuitas.",
   },
 
   // ========== SECCION 8: Identificacion de Oportunidades y Vision Estrategica ==========
   {
     id: "P8.1",
     sectionIndex: 7,
-    text: "Puedo identificar al menos 3 tareas repetitivas en mi negocio que consumen mucho tiempo y que podrian hacerse de forma mas rapida o eficiente con tecnologia.",
+    text: "Puedo identificar al menos 3 tareas repetitivas en mi negocio que consumen mucho tiempo y que podrían hacerse de forma más rápida o eficiente con tecnología.",
   },
   {
     id: "P8.2",
     sectionIndex: 7,
-    text: "Se cuales son los principales 'cuellos de botella' o problemas de eficiencia en mi negocio que la tecnologia podria ayudar a resolver.",
+    text: "Sé cuáles son los principales 'cuellos de botella' o problemas de eficiencia en mi negocio que la tecnología podría ayudar a resolver.",
   },
   {
     id: "P8.3",
     sectionIndex: 7,
-    text: "He pensado concretamente en como la inteligencia artificial podria aplicarse en mi negocio (no en general, sino en MI negocio especifico).",
+    text: "He pensado concretamente en cómo la inteligencia artificial podría aplicarse en mi negocio (no en general, sino en MI negocio específico).",
   },
   {
     id: "P8.4",
     sectionIndex: 7,
-    text: "Me beneficiaria poder predecir con mayor precision la demanda de mis productos/servicios, gestionar mejor el inventario, o anticipar temporadas altas y bajas.",
+    text: "Me beneficiaría poder predecir con mayor precisión la demanda de mis productos/servicios, gestionar mejor el inventario, o anticipar temporadas altas y bajas.",
   },
   {
     id: "P8.5",
     sectionIndex: 7,
-    text: "Mi negocio genera o necesita generar contenido regularmente (publicaciones para redes, correos a clientes, descripciones de productos, propuestas) y me gustaria hacerlo de forma mas rapida.",
+    text: "Mi negocio genera o necesita generar contenido regularmente (publicaciones para redes, correos a clientes, descripciones de productos, propuestas) y me gustaría hacerlo de forma más rápida.",
   },
   {
     id: "P8.6",
     sectionIndex: 7,
-    text: "Mi negocio recibe un volumen de interacciones con clientes (consultas, pedidos, quejas) que a veces es dificil atender a tiempo y con calidad.",
+    text: "Mi negocio recibe un volumen de interacciones con clientes (consultas, pedidos, quejas) que a veces es difícil atender a tiempo y con calidad.",
   },
   {
     id: "P8.7",
     sectionIndex: 7,
-    text: "Tengo una vision clara de como quiero que mi negocio se vea en 2-3 anos en terminos de uso de tecnologia e inteligencia artificial.",
+    text: "Tengo una visión clara de cómo quiero que mi negocio se vea en 2-3 años en términos de uso de tecnología e inteligencia artificial.",
   },
 
   // ========== SECCION 9: Gobernanza, Etica y Confianza en IA ==========
   {
     id: "P9.1",
     sectionIndex: 8,
-    text: "Me preocupa la privacidad y proteccion de los datos de mis clientes cuando uso herramientas digitales o de IA, y tomo medidas para protegerlos.",
+    text: "Me preocupa la privacidad y protección de los datos de mis clientes cuando uso herramientas digitales o de IA, y tomo medidas para protegerlos.",
   },
   {
     id: "P9.2",
     sectionIndex: 8,
-    text: "Cuando uso herramientas de IA (como ChatGPT), tengo cuidado de no compartir informacion confidencial del negocio o datos personales de clientes.",
+    text: "Cuando uso herramientas de IA (como ChatGPT), tengo cuidado de no compartir información confidencial del negocio o datos personales de clientes.",
   },
   {
     id: "P9.3",
     sectionIndex: 8,
-    text: "Verifico y reviso el contenido generado por IA antes de usarlo (publicarlo, enviarlo a clientes, tomar decisiones basadas en el).",
+    text: "Verifico y reviso el contenido generado por IA antes de usarlo (publicarlo, enviarlo a clientes, tomar decisiones basadas en él).",
   },
   {
     id: "P9.4",
     sectionIndex: 8,
-    text: "Conozco (al menos a nivel basico) las regulaciones sobre proteccion de datos personales que aplican en Republica Dominicana (Ley 172-13).",
+    text: "Conozco (al menos a nivel básico) las regulaciones sobre protección de datos personales que aplican en República Dominicana (Ley 172-13).",
   },
   {
     id: "P9.5",
     sectionIndex: 8,
-    text: "Entiendo que la IA puede generar informacion incorrecta o sesgada, y se que no debo confiar ciegamente en sus resultados sin verificar.",
+    text: "Entiendo que la IA puede generar información incorrecta o sesgada, y sé que no debo confiar ciegamente en sus resultados sin verificar.",
   },
 ];
 

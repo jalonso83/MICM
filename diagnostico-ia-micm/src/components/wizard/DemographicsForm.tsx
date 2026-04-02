@@ -57,8 +57,8 @@ export default function DemographicsForm({ values, onChange }: Props) {
     <div>
       <h2 className="text-xl font-bold mb-2">Datos Generales de la Empresa</h2>
       <p className="text-gray-600 mb-6 text-sm">
-        Esta informacion nos ayuda a personalizar su diagnostico. No puntua en
-        la evaluacion.
+        Esta información nos ayuda a personalizar su diagnóstico. No puntúa en
+        la evaluación.
       </p>
 
       <div className="space-y-4">
@@ -97,14 +97,14 @@ export default function DemographicsForm({ values, onChange }: Props) {
           onChange={onChange}
         />
         <SelectField
-          label="Numero de empleados (incluyendo al dueno)"
+          label="Número de empleados (incluyendo al dueño)"
           field="numEmpleados"
           options={NUM_EMPLEADOS}
           value={values.numEmpleados}
           onChange={onChange}
         />
         <SelectField
-          label="Anos de operacion de la empresa"
+          label="Años de operación de la empresa"
           field="anosOperacion"
           options={ANOS_OPERACION}
           value={values.anosOperacion}
@@ -118,14 +118,14 @@ export default function DemographicsForm({ values, onChange }: Props) {
           onChange={onChange}
         />
         <SelectField
-          label="La empresa esta formalmente registrada"
+          label="La empresa está formalmente registrada"
           field="formalizacion"
           options={FORMALIZACION}
           value={values.formalizacion}
           onChange={onChange}
         />
         <SelectField
-          label="Genero del propietario/a principal"
+          label="Género del propietario/a principal"
           field="genero"
           options={GENEROS}
           value={values.genero}

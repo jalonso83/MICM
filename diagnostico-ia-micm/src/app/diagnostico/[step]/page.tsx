@@ -93,14 +93,16 @@ export default function WizardStepPage() {
       });
       if (!res.ok) {
         const data = await res.json();
-        throw new Error(data.error || "Error al enviar el diagnostico");
+        throw new Error(data.error || "Error al enviar el diagnóstico");
       }
       const data = await res.json();
       reset();
+      // Save recovery code to show on results page
+      sessionStorage.setItem("recoveryCode", data.recoveryCode);
       router.push(`/resultado/${data.id}`);
     } catch (err) {
       setError(
-        err instanceof Error ? err.message : "Error al enviar el diagnostico"
+        err instanceof Error ? err.message : "Error al enviar el diagnóstico"
       );
     } finally {
       setIsSubmitting(false);
@@ -126,7 +128,7 @@ export default function WizardStepPage() {
           </div>
         </div>
 
-        <h2 className="text-xl font-bold mb-4">Resumen del Diagnostico</h2>
+        <h2 className="text-xl font-bold mb-4">Resumen del Diagnóstico</h2>
         <p className="text-gray-600 mb-6">
           Revise sus respuestas antes de enviar.
         </p>
@@ -214,7 +216,7 @@ export default function WizardStepPage() {
             disabled={isSubmitting || answeredCount < 63}
             className="flex-1 py-3 px-4 bg-blue-700 text-white rounded-lg font-semibold hover:bg-blue-800 disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            {isSubmitting ? "Enviando..." : "Enviar Diagnostico"}
+            {isSubmitting ? "Enviando..." : "Enviar Diagnóstico"}
           </button>
         </div>
       </div>
@@ -229,7 +231,7 @@ export default function WizardStepPage() {
           <span>
             {step === 0
               ? "Datos Generales"
-              : `Seccion ${step} de 9`}
+              : `Sección ${step} de 9`}
           </span>
           <span>{Math.round(progress)}%</span>
         </div>

@@ -1,33 +1,50 @@
 import Link from "next/link";
+import Image from "next/image";
 
 export default function HomePage() {
   return (
     <main className="flex-1">
       {/* Header */}
       <header className="bg-white border-b border-gray-200">
-        <div className="max-w-5xl mx-auto px-4 py-4 flex items-center gap-3">
-          <div className="w-10 h-10 bg-blue-800 rounded-lg flex items-center justify-center text-white font-bold text-sm">
-            MICM
+        <div className="max-w-6xl mx-auto px-4 py-8 flex items-center justify-center gap-8">
+          <Image
+            src="/logo-micm.png"
+            alt="Ministerio de Industria, Comercio y MiPyMEs"
+            width={200}
+            height={200}
+            className="h-24 w-auto"
+          />
+          <div className="border-l-2 border-gray-300 pl-8">
+            <Image
+              src="/logo-pucmm.png"
+              alt="PUCMM"
+              width={340}
+              height={110}
+              className="h-20 w-auto"
+            />
           </div>
-          <div>
-            <h1 className="text-sm font-semibold text-blue-800">
-              Ministerio de Industria, Comercio y MiPyMEs
-            </h1>
-            <p className="text-xs text-gray-500">Republica Dominicana</p>
+          <div className="border-l-2 border-gray-300 pl-8">
+            <Image
+              src="/logo-centro-mipymes.png"
+              alt="Centro MiPyMEs PUCMM Santiago"
+              width={340}
+              height={110}
+              className="h-20 w-auto"
+            />
           </div>
         </div>
       </header>
 
       {/* Hero */}
       <section className="bg-gradient-to-br from-blue-800 via-blue-700 to-blue-900 text-white">
-        <div className="max-w-5xl mx-auto px-4 py-16 md:py-24">
+        <div className="max-w-5xl mx-auto px-4 py-12 md:py-16">
           <h2 className="text-3xl md:text-5xl font-bold leading-tight mb-6">
-            Diagnostico de Madurez
+            Diagnóstico de Madurez
             <br />
             en Inteligencia Artificial
           </h2>
           <p className="text-lg md:text-xl text-blue-100 max-w-2xl mb-8">
-            Descubra en que nivel se encuentra su empresa para aprovechar la
+            Descubra en qué nivel se encuentra su empresa para aprovechar la
             inteligencia artificial y reciba una hoja de ruta personalizada
             con acciones concretas para crecer.
           </p>
@@ -35,10 +52,18 @@ export default function HomePage() {
             href="/diagnostico/0"
             className="inline-block bg-white text-blue-800 font-semibold px-8 py-4 rounded-lg text-lg hover:bg-blue-50 transition-colors shadow-lg"
           >
-            Iniciar Diagnostico
+            Iniciar Diagnóstico
           </Link>
           <p className="text-sm text-blue-200 mt-4">
             Tiempo estimado: 20-30 minutos | Gratuito | Confidencial
+          </p>
+          <p className="mt-3">
+            <Link
+              href="/recuperar"
+              className="text-sm text-blue-200 underline hover:text-white"
+            >
+              ¿Ya realizó el diagnóstico? Recupere sus resultados
+            </Link>
           </p>
         </div>
       </section>
@@ -46,7 +71,7 @@ export default function HomePage() {
       {/* Como funciona */}
       <section className="max-w-5xl mx-auto px-4 py-16">
         <h3 className="text-2xl font-bold text-center mb-12">
-          ¿Como funciona?
+          ¿Cómo funciona?
         </h3>
         <div className="grid md:grid-cols-3 gap-8">
           <div className="text-center">
@@ -57,7 +82,7 @@ export default function HomePage() {
               Responda el cuestionario
             </h4>
             <p className="text-gray-600">
-              63 preguntas organizadas en 9 dimensiones que evaluan la
+              63 preguntas organizadas en 9 dimensiones que evalúan la
               madurez digital y de IA de su empresa.
             </p>
           </div>
@@ -66,11 +91,11 @@ export default function HomePage() {
               <span className="text-2xl font-bold text-green-700">2</span>
             </div>
             <h4 className="font-semibold text-lg mb-2">
-              Reciba su diagnostico
+              Reciba su diagnóstico
             </h4>
             <p className="text-gray-600">
-              Obtenga su Indice de Madurez en IA (IMIA) con un grafico
-              radar que muestra sus fortalezas y areas de mejora.
+              Obtenga su Índice de Madurez en IA (IMIA) con un gráfico
+              radar que muestra sus fortalezas y áreas de mejora.
             </p>
           </div>
           <div className="text-center">
@@ -99,17 +124,17 @@ export default function HomePage() {
               {
                 icon: "🌐",
                 title: "Infraestructura Digital",
-                desc: "Conectividad, dispositivos y seguridad basica",
+                desc: "Conectividad, dispositivos y seguridad básica",
               },
               {
                 icon: "⚙️",
                 title: "Procesos Operativos",
-                desc: "Nivel de digitalizacion de operaciones",
+                desc: "Nivel de digitalización de operaciones",
               },
               {
                 icon: "📊",
-                title: "Gestion de Datos",
-                desc: "Recoleccion, organizacion y uso de datos",
+                title: "Gestión de Datos",
+                desc: "Recolección, organización y uso de datos",
               },
               {
                 icon: "🧠",
@@ -123,23 +148,23 @@ export default function HomePage() {
               },
               {
                 icon: "💡",
-                title: "Cultura e Innovacion",
-                desc: "Disposicion al cambio y experimentacion",
+                title: "Cultura e Innovación",
+                desc: "Disposición al cambio y experimentación",
               },
               {
                 icon: "💰",
                 title: "Recursos Financieros",
-                desc: "Capacidad de inversion en tecnologia",
+                desc: "Capacidad de inversión en tecnología",
               },
               {
                 icon: "🔭",
-                title: "Vision Estrategica",
-                desc: "Identificacion de oportunidades con IA",
+                title: "Visión Estratégica",
+                desc: "Identificación de oportunidades con IA",
               },
               {
                 icon: "🛡️",
-                title: "Gobernanza y Etica",
-                desc: "Uso responsable de IA y proteccion de datos",
+                title: "Gobernanza y Ética",
+                desc: "Uso responsable de IA y protección de datos",
               },
             ].map((dim) => (
               <div
@@ -166,7 +191,7 @@ export default function HomePage() {
             { level: 2, name: "Exploratorio", color: "bg-orange-500" },
             { level: 3, name: "Emergente", color: "bg-yellow-500" },
             { level: 4, name: "Integrado", color: "bg-lime-500" },
-            { level: 5, name: "Estrategico", color: "bg-green-500" },
+            { level: 5, name: "Estratégico", color: "bg-green-500" },
           ].map((l) => (
             <div
               key={l.level}
@@ -191,13 +216,13 @@ export default function HomePage() {
             ¿Listo para descubrir el potencial de su negocio?
           </h3>
           <p className="text-blue-200 mb-8">
-            El diagnostico es completamente gratuito y confidencial.
+            El diagnóstico es completamente gratuito y confidencial.
           </p>
           <Link
             href="/diagnostico/0"
             className="inline-block bg-white text-blue-800 font-semibold px-8 py-4 rounded-lg text-lg hover:bg-blue-50 transition-colors"
           >
-            Iniciar Diagnostico
+            Iniciar Diagnóstico
           </Link>
         </div>
       </section>
@@ -207,10 +232,10 @@ export default function HomePage() {
         <div className="max-w-5xl mx-auto px-4 text-center text-sm">
           <p>
             Ministerio de Industria, Comercio y MiPyMEs (MICM) -
-            Republica Dominicana
+            República Dominicana
           </p>
           <p className="mt-2">
-            Herramienta de diagnostico piloto | Version 1.0
+            Herramienta de diagnóstico piloto | Versión 1.0
           </p>
         </div>
       </footer>

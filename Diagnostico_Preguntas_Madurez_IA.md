@@ -35,7 +35,7 @@
 | G5 | Numero de empleados (incluyendo al dueno) | Seleccion: 1 (solo yo) / 2-5 / 6-10 / 11-25 / 26-50 / 51-100 / 101-200 |
 | G6 | Anos de operacion de la empresa | Seleccion: Menos de 1 ano / 1-3 anos / 4-7 anos / 8-15 anos / Mas de 15 anos |
 | G7 | Rango de ingresos mensuales aproximados (RD$) | Seleccion: Menos de 50,000 / 50,000-150,000 / 150,001-500,000 / 500,001-1,500,000 / 1,500,001-5,000,000 / Mas de 5,000,000 |
-| G8 | La empresa esta formalmente registrada | Seleccion: Si, en el RNI y DGII / Solo en la DGII / En proceso / No esta formalizada |
+| G8 | La empresa esta formalmente registrada | Seleccion: Completamente formalizada (RNC, Registro Mercantil, TSS, licencia municipal) / Tengo RNC y Registro Mercantil en Camara de Comercio / Solo tengo RNC en la DGII / En proceso de formalizacion / No estoy registrado en ninguna institucion / No estoy seguro de mi estatus de registro |
 | G9 | Genero del propietario/a principal | Seleccion: Femenino / Masculino / Prefiero no decir |
 | G10 | Edad del propietario/a principal | Seleccion: 18-25 / 26-35 / 36-45 / 46-55 / 56-65 / Mayor de 65 |
 | G11 | Nivel educativo del propietario/a principal | Seleccion: Primaria / Secundaria / Tecnico / Universitario / Postgrado |

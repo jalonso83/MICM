@@ -22,7 +22,7 @@ export default function SectionForm({
     <div>
       <h2 className="text-xl font-bold mb-1">{section.label}</h2>
       <p className="text-sm text-gray-500 mb-6">
-        Seccion {sectionIndex + 1} de 9 | {questions.length} preguntas
+        Sección {sectionIndex + 1} de 9 | {questions.length} preguntas
       </p>
 
       {/* Scale legend */}

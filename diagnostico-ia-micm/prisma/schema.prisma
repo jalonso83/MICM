@@ -26,6 +26,7 @@ model Company {
 
 model Diagnostic {
   id              String    @id @default(cuid())
+  recoveryCode    String    @unique
   companyId       String
   company         Company   @relation(fields: [companyId], references: [id])
 

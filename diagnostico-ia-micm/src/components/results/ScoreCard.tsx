@@ -18,7 +18,7 @@ export default function ScoreCard({
   return (
     <div className="bg-white rounded-xl border-2 p-6 text-center" style={{ borderColor: level.color }}>
       <p className="text-sm text-gray-500 mb-2">
-        Indice de Madurez en IA (IMIA)
+        Índice de Madurez en IA (IMIA)
       </p>
       <div className="text-6xl font-bold mb-2" style={{ color: level.color }}>
         {imiaScore.toFixed(1)}

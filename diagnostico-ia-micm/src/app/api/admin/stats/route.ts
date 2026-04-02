@@ -1,11 +1,14 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/db";
 
-export async function GET(request: Request) {
-  // Simple auth check
+function checkAuth(request: Request): boolean {
   const authHeader = request.headers.get("authorization");
   const token = authHeader?.replace("Bearer ", "");
-  if (token !== process.env.ADMIN_TOKEN) {
+  return token === process.env.ADMIN_TOKEN;
+}
+
+export async function GET(request: Request) {
+  if (!checkAuth(request)) {
     return NextResponse.json({ error: "No autorizado" }, { status: 401 });
   }
 
@@ -44,12 +47,33 @@ export async function GET(request: Request) {
       },
     });
 
+    // List of all diagnostics
+    const diagnostics = await prisma.diagnostic.findMany({
+      include: { company: true, roadmap: { select: { id: true } } },
+      orderBy: { createdAt: "desc" },
+    });
+
     return NextResponse.json({
       totalDiagnostics,
       byLevel,
       bySector,
       byProvincia,
       avgScores: avgScores._avg,
+      diagnostics: diagnostics.map((d) => ({
+        id: d.id,
+        recoveryCode: d.recoveryCode,
+        empresa: d.company.nombre || "Sin nombre",
+        sector: d.company.sector,
+        provincia: d.company.provincia,
+        empleados: d.company.numEmpleados,
+        ingresos: d.company.ingresosMensuales,
+        formalizacion: d.company.formalizacion,
+        imiaScore: d.imiaScore,
+        maturityLevel: d.maturityLevel,
+        maturityNumeric: d.maturityNumeric,
+        tieneRoadmap: !!d.roadmap,
+        fecha: d.createdAt,
+      })),
     });
   } catch (error) {
     console.error("Error fetching stats:", error);
