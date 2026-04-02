@@ -1,0 +1,76 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Company {
+  id                String       @id @default(cuid())
+  nombre            String?
+  sector            String
+  provincia         String
+  zona              String
+  numEmpleados      String
+  anosOperacion     String
+  ingresosMensuales String
+  formalizacion     String
+  genero            String
+  edad              String
+  nivelEducativo    String
+  createdAt         DateTime     @default(now())
+  diagnostics       Diagnostic[]
+}
+
+model Diagnostic {
+  id              String    @id @default(cuid())
+  companyId       String
+  company         Company   @relation(fields: [companyId], references: [id])
+
+  responses       Json
+
+  scoreS1         Int
+  scoreS2         Int
+  scoreS3         Int
+  scoreS4         Int
+  scoreS5         Int
+  scoreS6         Int
+  scoreS7         Int
+  scoreS8         Int
+  scoreS9         Int
+
+  normS1          Float
+  normS2          Float
+  normS3          Float
+  normS4          Float
+  normS5          Float
+  normS6          Float
+  normS7          Float
+  normS8          Float
+  normS9          Float
+
+  imiaScore       Float
+  maturityLevel   String
+  maturityNumeric Int
+  overridesApplied Json?
+
+  createdAt       DateTime  @default(now())
+  roadmap         Roadmap?
+}
+
+model Roadmap {
+  id              String     @id @default(cuid())
+  diagnosticId    String     @unique
+  diagnostic      Diagnostic @relation(fields: [diagnosticId], references: [id])
+
+  content         String
+
+  modelUsed       String     @default("claude-sonnet-4-20250514")
+  promptTokens    Int?
+  outputTokens    Int?
+
+  createdAt       DateTime   @default(now())
+  updatedAt       DateTime   @updatedAt
+}
