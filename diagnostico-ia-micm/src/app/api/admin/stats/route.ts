@@ -73,6 +73,9 @@ export async function GET(request: Request) {
         maturityNumeric: d.maturityNumeric,
         tieneRoadmap: !!d.roadmap,
         fecha: d.createdAt,
+        normS1: d.normS1, normS2: d.normS2, normS3: d.normS3,
+        normS4: d.normS4, normS5: d.normS5, normS6: d.normS6,
+        normS7: d.normS7, normS8: d.normS8, normS9: d.normS9,
       })),
     });
   } catch (error) {

@@ -1,10 +1,11 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useCallback } from "react";
 import Link from "next/link";
 import {
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip,
   ResponsiveContainer, PieChart, Pie, Cell, Legend,
+  Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis,
 } from "recharts";
 
 interface DiagnosticItem {
@@ -21,6 +22,15 @@ interface DiagnosticItem {
   maturityNumeric: number;
   tieneRoadmap: boolean;
   fecha: string;
+  normS1: number;
+  normS2: number;
+  normS3: number;
+  normS4: number;
+  normS5: number;
+  normS6: number;
+  normS7: number;
+  normS8: number;
+  normS9: number;
 }
 
 interface StatsData {
@@ -40,6 +50,34 @@ const LEVEL_COLORS: Record<string, string> = {
   ESTRATEGICO: "#22C55E",
 };
 
+const SECTION_LABELS = [
+  { key: "normS1", short: "Infraestructura" },
+  { key: "normS2", short: "Procesos" },
+  { key: "normS3", short: "Datos" },
+  { key: "normS4", short: "Habilidades" },
+  { key: "normS5", short: "Uso IA" },
+  { key: "normS6", short: "Cultura" },
+  { key: "normS7", short: "Recursos" },
+  { key: "normS8", short: "Visión" },
+  { key: "normS9", short: "Gobernanza" },
+];
+
+function getHeatColor(score: number): string {
+  if (score <= 20) return "#FEE2E2";
+  if (score <= 40) return "#FED7AA";
+  if (score <= 60) return "#FEF9C3";
+  if (score <= 80) return "#D9F99D";
+  return "#BBF7D0";
+}
+
+function getHeatTextColor(score: number): string {
+  if (score <= 20) return "#991B1B";
+  if (score <= 40) return "#9A3412";
+  if (score <= 60) return "#854D0E";
+  if (score <= 80) return "#3F6212";
+  return "#166534";
+}
+
 export default function AdminPage() {
   const [token, setToken] = useState("");
   const [authenticated, setAuthenticated] = useState(false);
@@ -47,6 +85,10 @@ export default function AdminPage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [searchTerm, setSearchTerm] = useState("");
+  const [filterSector, setFilterSector] = useState("");
+  const [filterProvincia, setFilterProvincia] = useState("");
+  const [filterNivel, setFilterNivel] = useState("");
+  const [selectedDiagnostic, setSelectedDiagnostic] = useState<DiagnosticItem | null>(null);
 
   const fetchData = useCallback(async (authToken: string) => {
     setLoading(true);
@@ -94,7 +136,8 @@ export default function AdminPage() {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="bg-white rounded-xl border p-8 w-full max-w-sm">
-          <h1 className="text-xl font-bold text-center mb-6">Panel de Administración</h1>
+          <h1 className="text-xl font-bold text-center mb-2">Panel de Administración</h1>
+          <p className="text-sm text-gray-500 text-center mb-6">Diagnóstico de Madurez en IA - MICM</p>
           <form onSubmit={handleLogin} className="space-y-4">
             <input
               type="password"
@@ -123,31 +166,66 @@ export default function AdminPage() {
     ? data.diagnostics.reduce((sum, d) => sum + d.imiaScore, 0) / data.totalDiagnostics
     : 0;
 
+  // Pie chart data
   const pieData = data.byLevel.map((l) => ({
     name: l.maturityLevel,
     value: l._count.id,
     color: LEVEL_COLORS[l.maturityLevel] || "#6B7280",
   }));
 
+  // Bar chart data
   const sectorData = data.bySector.map((s) => ({
     name: s.sector.length > 20 ? s.sector.substring(0, 18) + "..." : s.sector,
+    fullName: s.sector,
     count: s.count,
     promedio: Number(Number(s.avg_imia).toFixed(1)),
   }));
 
+  // Radar nacional promedio
+  const radarNacional = SECTION_LABELS.map((s) => ({
+    dimension: s.short,
+    score: data.avgScores[s.key] ? Number(Number(data.avgScores[s.key]!).toFixed(1)) : 0,
+    fullMark: 100,
+  }));
+
+  // Unique values for filters
+  const sectores = [...new Set(data.diagnostics.map((d) => d.sector))].sort();
+  const provincias = [...new Set(data.diagnostics.map((d) => d.provincia))].sort();
+  const niveles = [...new Set(data.diagnostics.map((d) => d.maturityLevel))];
+
+  // Filtered diagnostics
   const filteredDiagnostics = data.diagnostics.filter((d) => {
     const term = searchTerm.toLowerCase();
-    return (
+    const matchesSearch =
+      !searchTerm ||
       d.empresa.toLowerCase().includes(term) ||
       d.sector.toLowerCase().includes(term) ||
       d.provincia.toLowerCase().includes(term) ||
-      d.recoveryCode.toLowerCase().includes(term) ||
-      d.maturityLevel.toLowerCase().includes(term)
-    );
+      d.recoveryCode.toLowerCase().includes(term);
+    const matchesSector = !filterSector || d.sector === filterSector;
+    const matchesProvincia = !filterProvincia || d.provincia === filterProvincia;
+    const matchesNivel = !filterNivel || d.maturityLevel === filterNivel;
+    return matchesSearch && matchesSector && matchesProvincia && matchesNivel;
   });
 
+  // Province heatmap data
+  const provinciaHeatmap = data.byProvincia.map((p) => ({
+    name: String(p.provincia),
+    count: p.count,
+    avgImia: Number(Number(p.avg_imia).toFixed(1)),
+  }));
+
+  // Individual radar for selected diagnostic
+  const selectedRadar = selectedDiagnostic
+    ? SECTION_LABELS.map((s) => ({
+        dimension: s.short,
+        score: Number((selectedDiagnostic as unknown as Record<string, number>)[s.key]?.toFixed(1) || 0),
+        fullMark: 100,
+      }))
+    : null;
+
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-100">
       {/* Header */}
       <header className="bg-blue-800 text-white">
         <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
@@ -156,6 +234,12 @@ export default function AdminPage() {
             <p className="text-sm text-blue-200">Diagnóstico de Madurez en IA - MICM</p>
           </div>
           <div className="flex gap-3">
+            <Link
+              href="/"
+              className="px-4 py-2 bg-white/20 rounded-lg text-sm font-medium hover:bg-white/30 transition-colors"
+            >
+              Ir al Sitio
+            </Link>
             <button
               onClick={handleExportCSV}
               className="px-4 py-2 bg-white/20 rounded-lg text-sm font-medium hover:bg-white/30 transition-colors"
@@ -174,30 +258,35 @@ export default function AdminPage() {
 
       <main className="max-w-7xl mx-auto px-4 py-8 space-y-8">
         {/* KPI Cards */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          <div className="bg-white rounded-xl border p-5">
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+          <div className="bg-white rounded-xl border p-5 shadow-sm">
             <p className="text-sm text-gray-500">Total Diagnósticos</p>
             <p className="text-3xl font-bold text-blue-800">{data.totalDiagnostics}</p>
           </div>
-          <div className="bg-white rounded-xl border p-5">
+          <div className="bg-white rounded-xl border p-5 shadow-sm">
             <p className="text-sm text-gray-500">IMIA Promedio</p>
             <p className="text-3xl font-bold text-blue-800">{avgImia.toFixed(1)}</p>
           </div>
-          <div className="bg-white rounded-xl border p-5">
+          <div className="bg-white rounded-xl border p-5 shadow-sm">
             <p className="text-sm text-gray-500">Sectores</p>
             <p className="text-3xl font-bold text-blue-800">{data.bySector.length}</p>
           </div>
-          <div className="bg-white rounded-xl border p-5">
+          <div className="bg-white rounded-xl border p-5 shadow-sm">
             <p className="text-sm text-gray-500">Provincias</p>
             <p className="text-3xl font-bold text-blue-800">{data.byProvincia.length}</p>
           </div>
+          <div className="bg-white rounded-xl border p-5 shadow-sm">
+            <p className="text-sm text-gray-500">Con Hoja de Ruta</p>
+            <p className="text-3xl font-bold text-green-600">
+              {data.diagnostics.filter((d) => d.tieneRoadmap).length}
+            </p>
+          </div>
         </div>
 
-        {/* Charts */}
+        {/* Row 1: Pie + Radar Nacional */}
         <div className="grid md:grid-cols-2 gap-6">
-          {/* Pie: Distribution by level */}
-          <div className="bg-white rounded-xl border p-6">
-            <h3 className="text-lg font-semibold mb-4">Distribución por Nivel</h3>
+          <div className="bg-white rounded-xl border p-6 shadow-sm">
+            <h3 className="text-lg font-semibold mb-4">Distribución por Nivel de Madurez</h3>
             <ResponsiveContainer width="100%" height={300}>
               <PieChart>
                 <Pie
@@ -219,47 +308,182 @@ export default function AdminPage() {
             </ResponsiveContainer>
           </div>
 
-          {/* Bar: By sector */}
-          <div className="bg-white rounded-xl border p-6">
+          <div className="bg-white rounded-xl border p-6 shadow-sm">
+            <h3 className="text-lg font-semibold mb-4">Radar Promedio Nacional</h3>
+            <ResponsiveContainer width="100%" height={300}>
+              <RadarChart data={radarNacional} cx="50%" cy="50%" outerRadius="70%">
+                <PolarGrid stroke="#e5e7eb" />
+                <PolarAngleAxis dataKey="dimension" tick={{ fontSize: 11, fill: "#4b5563" }} />
+                <PolarRadiusAxis angle={90} domain={[0, 100]} tick={{ fontSize: 10 }} tickCount={6} />
+                <Radar name="Promedio" dataKey="score" stroke="#1e40af" fill="#1e40af" fillOpacity={0.2} strokeWidth={2} />
+                <Tooltip formatter={(value) => [`${Number(value).toFixed(1)}%`, "Promedio"]} />
+              </RadarChart>
+            </ResponsiveContainer>
+          </div>
+        </div>
+
+        {/* Row 2: Bar Sector + Heatmap Provincias */}
+        <div className="grid md:grid-cols-2 gap-6">
+          <div className="bg-white rounded-xl border p-6 shadow-sm">
             <h3 className="text-lg font-semibold mb-4">IMIA Promedio por Sector</h3>
             <ResponsiveContainer width="100%" height={300}>
               <BarChart data={sectorData} layout="vertical">
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis type="number" domain={[0, 100]} />
-                <YAxis type="category" dataKey="name" width={130} tick={{ fontSize: 12 }} />
-                <Tooltip formatter={(value) => [`${Number(value)}`, "IMIA Promedio"]} />
+                <YAxis type="category" dataKey="name" width={130} tick={{ fontSize: 11 }} />
+                <Tooltip
+                  formatter={(value) => [`${Number(value)}`, "IMIA"]}
+                  labelFormatter={(label) => {
+                    const item = sectorData.find((s) => s.name === label);
+                    return item ? `${item.fullName} (${item.count} empresas)` : label;
+                  }}
+                />
                 <Bar dataKey="promedio" fill="#1e40af" radius={[0, 4, 4, 0]} />
               </BarChart>
             </ResponsiveContainer>
           </div>
-        </div>
 
-        {/* Top Provinces */}
-        <div className="bg-white rounded-xl border p-6">
-          <h3 className="text-lg font-semibold mb-4">Top Provincias</h3>
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
-            {data.byProvincia.map((p) => (
-              <div key={String(p.provincia)} className="border rounded-lg p-3 text-center">
-                <p className="text-sm font-medium">{String(p.provincia)}</p>
-                <p className="text-lg font-bold text-blue-800">{p.count}</p>
-                <p className="text-xs text-gray-500">IMIA: {Number(p.avg_imia).toFixed(1)}</p>
-              </div>
-            ))}
+          {/* Province Heatmap */}
+          <div className="bg-white rounded-xl border p-6 shadow-sm">
+            <h3 className="text-lg font-semibold mb-4">Mapa de Calor por Provincia</h3>
+            <div className="grid grid-cols-3 sm:grid-cols-4 gap-2 max-h-[300px] overflow-y-auto">
+              {provinciaHeatmap.map((p) => (
+                <div
+                  key={p.name}
+                  className="rounded-lg p-2 text-center border"
+                  style={{
+                    backgroundColor: getHeatColor(p.avgImia),
+                    color: getHeatTextColor(p.avgImia),
+                  }}
+                >
+                  <p className="text-xs font-semibold truncate" title={p.name}>{p.name}</p>
+                  <p className="text-lg font-bold">{p.avgImia}</p>
+                  <p className="text-xs opacity-75">{p.count} emp.</p>
+                </div>
+              ))}
+            </div>
+            {/* Legend */}
+            <div className="flex gap-1 mt-3 justify-center text-xs">
+              <div className="flex items-center gap-1"><span className="w-3 h-3 rounded" style={{ backgroundColor: "#FEE2E2" }} /> 0-20</div>
+              <div className="flex items-center gap-1"><span className="w-3 h-3 rounded" style={{ backgroundColor: "#FED7AA" }} /> 21-40</div>
+              <div className="flex items-center gap-1"><span className="w-3 h-3 rounded" style={{ backgroundColor: "#FEF9C3" }} /> 41-60</div>
+              <div className="flex items-center gap-1"><span className="w-3 h-3 rounded" style={{ backgroundColor: "#D9F99D" }} /> 61-80</div>
+              <div className="flex items-center gap-1"><span className="w-3 h-3 rounded" style={{ backgroundColor: "#BBF7D0" }} /> 81-100</div>
+            </div>
           </div>
         </div>
 
-        {/* Diagnostics Table */}
-        <div className="bg-white rounded-xl border p-6">
-          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-4">
-            <h3 className="text-lg font-semibold">Todos los Diagnósticos</h3>
+        {/* Individual Diagnostic Detail (modal-like) */}
+        {selectedDiagnostic && selectedRadar && (
+          <div className="bg-white rounded-xl border p-6 shadow-sm">
+            <div className="flex justify-between items-start mb-4">
+              <div>
+                <h3 className="text-lg font-semibold">
+                  Detalle: {selectedDiagnostic.empresa}
+                </h3>
+                <p className="text-sm text-gray-500">
+                  {selectedDiagnostic.sector} | {selectedDiagnostic.provincia} | Código: {selectedDiagnostic.recoveryCode}
+                </p>
+              </div>
+              <button
+                onClick={() => setSelectedDiagnostic(null)}
+                className="text-gray-400 hover:text-gray-600 text-xl"
+              >
+                ✕
+              </button>
+            </div>
+            <div className="grid md:grid-cols-2 gap-6">
+              <div>
+                <ResponsiveContainer width="100%" height={280}>
+                  <RadarChart data={selectedRadar} cx="50%" cy="50%" outerRadius="70%">
+                    <PolarGrid stroke="#e5e7eb" />
+                    <PolarAngleAxis dataKey="dimension" tick={{ fontSize: 11 }} />
+                    <PolarRadiusAxis angle={90} domain={[0, 100]} tick={{ fontSize: 10 }} tickCount={6} />
+                    <Radar dataKey="score" stroke={LEVEL_COLORS[selectedDiagnostic.maturityLevel] || "#1e40af"} fill={LEVEL_COLORS[selectedDiagnostic.maturityLevel] || "#1e40af"} fillOpacity={0.2} strokeWidth={2} />
+                    <Tooltip formatter={(value) => [`${Number(value).toFixed(1)}%`, "Puntaje"]} />
+                  </RadarChart>
+                </ResponsiveContainer>
+              </div>
+              <div className="space-y-3">
+                <div className="flex justify-between items-center">
+                  <span className="text-sm text-gray-500">IMIA Score</span>
+                  <span className="text-2xl font-bold" style={{ color: LEVEL_COLORS[selectedDiagnostic.maturityLevel] }}>
+                    {selectedDiagnostic.imiaScore.toFixed(1)}
+                  </span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-sm text-gray-500">Nivel</span>
+                  <span className="px-3 py-1 rounded-full text-white text-sm font-semibold" style={{ backgroundColor: LEVEL_COLORS[selectedDiagnostic.maturityLevel] }}>
+                    {selectedDiagnostic.maturityLevel}
+                  </span>
+                </div>
+                <div className="flex justify-between"><span className="text-sm text-gray-500">Empleados</span><span className="text-sm">{selectedDiagnostic.empleados}</span></div>
+                <div className="flex justify-between"><span className="text-sm text-gray-500">Ingresos</span><span className="text-sm">{selectedDiagnostic.ingresos}</span></div>
+                <div className="flex justify-between"><span className="text-sm text-gray-500">Formalización</span><span className="text-sm text-right max-w-[200px]">{selectedDiagnostic.formalizacion}</span></div>
+                <div className="flex justify-between"><span className="text-sm text-gray-500">Fecha</span><span className="text-sm">{new Date(selectedDiagnostic.fecha).toLocaleDateString("es-DO")}</span></div>
+                <div className="flex gap-2 pt-2">
+                  <Link href={`/resultado/${selectedDiagnostic.id}`} className="text-sm bg-blue-100 text-blue-700 px-3 py-1 rounded hover:bg-blue-200">
+                    Ver Resultado
+                  </Link>
+                  {selectedDiagnostic.tieneRoadmap && (
+                    <Link href={`/hoja-de-ruta/${selectedDiagnostic.id}`} className="text-sm bg-green-100 text-green-700 px-3 py-1 rounded hover:bg-green-200">
+                      Ver Hoja de Ruta
+                    </Link>
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Diagnostics Table with Filters */}
+        <div className="bg-white rounded-xl border p-6 shadow-sm">
+          <h3 className="text-lg font-semibold mb-4">Todos los Diagnósticos</h3>
+
+          {/* Filters */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
             <input
               type="text"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              placeholder="Buscar por empresa, sector, código..."
-              className="w-full sm:w-72 px-3 py-2 border rounded-lg text-sm"
+              placeholder="Buscar empresa o código..."
+              className="px-3 py-2 border rounded-lg text-sm"
             />
+            <select
+              value={filterSector}
+              onChange={(e) => setFilterSector(e.target.value)}
+              className="px-3 py-2 border rounded-lg text-sm bg-white"
+            >
+              <option value="">Todos los sectores</option>
+              {sectores.map((s) => (
+                <option key={s} value={s}>{s}</option>
+              ))}
+            </select>
+            <select
+              value={filterProvincia}
+              onChange={(e) => setFilterProvincia(e.target.value)}
+              className="px-3 py-2 border rounded-lg text-sm bg-white"
+            >
+              <option value="">Todas las provincias</option>
+              {provincias.map((p) => (
+                <option key={p} value={p}>{p}</option>
+              ))}
+            </select>
+            <select
+              value={filterNivel}
+              onChange={(e) => setFilterNivel(e.target.value)}
+              className="px-3 py-2 border rounded-lg text-sm bg-white"
+            >
+              <option value="">Todos los niveles</option>
+              {niveles.map((n) => (
+                <option key={n} value={n}>{n}</option>
+              ))}
+            </select>
           </div>
+
+          <p className="text-xs text-gray-500 mb-3">
+            Mostrando {filteredDiagnostics.length} de {data.totalDiagnostics} diagnósticos
+          </p>
 
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
@@ -277,9 +501,13 @@ export default function AdminPage() {
               </thead>
               <tbody>
                 {filteredDiagnostics.map((d) => (
-                  <tr key={d.id} className="border-b hover:bg-gray-50">
+                  <tr
+                    key={d.id}
+                    className="border-b hover:bg-blue-50 cursor-pointer transition-colors"
+                    onClick={() => setSelectedDiagnostic(d)}
+                  >
                     <td className="px-3 py-2 font-mono text-xs">{d.recoveryCode}</td>
-                    <td className="px-3 py-2">{d.empresa}</td>
+                    <td className="px-3 py-2 font-medium">{d.empresa}</td>
                     <td className="px-3 py-2 text-xs">{d.sector}</td>
                     <td className="px-3 py-2 text-xs">{d.provincia}</td>
                     <td className="px-3 py-2 text-right font-bold">{d.imiaScore.toFixed(1)}</td>
@@ -298,6 +526,7 @@ export default function AdminPage() {
                       <Link
                         href={`/resultado/${d.id}`}
                         className="text-blue-600 hover:underline text-xs mr-2"
+                        onClick={(e) => e.stopPropagation()}
                       >
                         Ver
                       </Link>
@@ -305,6 +534,7 @@ export default function AdminPage() {
                         <Link
                           href={`/hoja-de-ruta/${d.id}`}
                           className="text-green-600 hover:underline text-xs"
+                          onClick={(e) => e.stopPropagation()}
                         >
                           Ruta
                         </Link>
@@ -318,7 +548,7 @@ export default function AdminPage() {
 
           {filteredDiagnostics.length === 0 && (
             <p className="text-center text-gray-500 py-8">
-              No se encontraron diagnósticos.
+              No se encontraron diagnósticos con esos filtros.
             </p>
           )}
         </div>

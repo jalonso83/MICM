@@ -5,8 +5,15 @@ export default function HomePage() {
   return (
     <main className="flex-1">
       {/* Header */}
-      <header className="bg-white border-b border-gray-200">
-        <div className="max-w-6xl mx-auto px-4 py-8 flex items-center justify-center gap-8">
+      <header className="bg-white border-b border-gray-200 relative">
+        <div className="max-w-6xl mx-auto px-4 py-8 flex items-center gap-8">
+          {/* Admin link */}
+          <Link
+            href="/admin"
+            className="absolute right-4 top-6 text-xs text-gray-400 hover:text-blue-600 transition-colors"
+          >
+            Admin
+          </Link>
           <Image
             src="/logo-micm.png"
             alt="Ministerio de Industria, Comercio y MiPyMEs"
